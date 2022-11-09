@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Books
+{% endblock %}
+
+{% block main %}
+<main id="book">
+    <div id="main-content">
+        <h1>BOOK DETAILS</h1>
+        <span id="view-all-books"><a href="/books">< View all books</a></span>
+        <div id="book-details">
+            <span><b>Title:</b> {{ book.title }}</span>
+            <span><b>Author:</b> {{ book.author }}</span>
+            <span><b>Genre:</b> {{ book.genre }}</span>
+        <div id="update-status">
+            <span><b>Update status:</b></span>
+            <form action="/books/{{ book.hyphenate_title() }}/update?loc=book" method="post">
+                {% if book.is_checked_out %}
+                <span><input name="check-out-status" type="radio" value="checked-in" onchange="this.form.submit()"/>Checked-in</span>
+                <span><input name="check-out-status" type="radio" value="checked-out" onchange="this.form.submit()" checked/>Checked-out</span>
+                {% else %}
+                <span><input name="check-out-status" type="radio" value="checked-in" onchange="this.form.submit()" checked/>Checked-in</span>
+                <span><input name="check-out-status" type="radio" value="checked-out" onchange="this.form.submit()"/>Checked-out</span>
+                {% endif %}
+            </form>
+        </div>
+        <div id="remove-book">
+            <form action="/books/{{ book.hyphenate_title() }}/delete" method="post">
+                <input class="form-inputs" type="submit" value="Remove Book">
+            </form>
+        </div>
+        <div id="edit-book">
+          <form action="/books/{{ book.hyphenate_title() }}/edit" method="get">
+              <input class="form-inputs" type="submit" value="Edit Book">
+          </form>
+      </div>
+        <div id="check-out-log">
+            <span><b>Check-out logs:</b></span>
+            {% if book.check_out_logs %}
+                {% for log in book.check_out_logs %} 
+                <span>{{ log }}</span>
+                {% endfor %}
+            {% else %}
+            <span>There are no logs yet</span>
+            {% endif %}
+        </div>
+    </div>
+</main>
+{% endblock %}

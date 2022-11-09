@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Books
+{% endblock %}
+
+{% block main %}
+<main id="books">
+    <div id="main-content">
+        <h1>ALL BOOKS</h1>
+        {% if error %}
+        <div id="error-message">
+            Please make sure to add a book title, author, and genre
+        </div>
+        {% endif %}
+        <div class="books-form">
+            <form action="/books/create" method="post">
+                <h2 class="form-header">Add a book</h2>
+                <label class="title-label" for="title">Title</label>
+                <input class="form-inputs title-input" type="text" name="title" id="title">
+                <label class="author-label" for="author">Author</label>
+                <input class="form-inputs author-input" type="text" name="author" id="author">
+                <label class="genre-label" for="genre">Genre</label>
+                <input class="form-inputs genre-input" type="text" name="genre" id="genre">
+                <input class="form-inputs submit-btn" type="submit" value="Add Book">
+            </form>
+        </div>
+        <div class="books-form">
+            <form action="/books/search" method="get">
+                <h2 class="form-header">Search books</h2>
+                <label class="title-label" for="title">Title</label>
+                <input class="form-inputs title-input" type="text" name="title" id="title">
+                <label class="author-label" for="author">Author</label>
+                <input class="form-inputs author-input" type="text" name="author" id="author">
+                <label class="genre-label" for="genre">Genre</label>
+                <input class="form-inputs genre-input" type="text" name="genre" id="genre">
+                <input class="form-inputs submit-btn" type="submit" value="Search Books">
+            </form>
+            </form>
+        </div>
+        {% if books %} 
+        <div class="book-cards">
+            {% for book in books %}
+            <div class="book-card">
+                <h2 class="card-header"><a href=/books/{{ book.hyphenate_title() }}>{{ book.title }}</a></h2>
+                <span>Update status:</span>
+                <form action="/books/{{ book.hyphenate_title() }}/update?loc=books" method="post">
+                    {% if book.is_checked_out %}
+                    <span><input name="check-out-status" type="radio" value="checked-in" onchange="this.form.submit()"/>Checked-in</span>
+                    <span><input name="check-out-status" type="radio" value="checked-out" onchange="this.form.submit()" checked/>Checked-out</span>
+                    {% else %}
+                    <span><input name="check-out-status" type="radio" value="checked-in" onchange="this.form.submit()" checked/>Checked-in</span>
+                    <span><input name="check-out-status" type="radio" value="checked-out" onchange="this.form.submit()"/>Checked-out</span>
+                    {% endif %}
+                </form>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <span class="no-books-found">No books found</span>
+        {% endif %}
+    </div>
+</main>
+{% endblock %}

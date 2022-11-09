@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+
+<main id="books">
+  <div id="main-content">
+      <h1>EDIT BOOK</h1>
+      {% if error %}
+      <div id="error-message">
+          Please make sure to add a book title, author, and genre
+      </div>
+      {% endif %}
+      <div class="books-form">
+          <form action="/books/{{ book.hyphenate_title }}" method="post">
+              <h2 class="form-header">Edit book</h2>
+              <label class="title-label" for="title">Title</label>
+              <input class="form-inputs title-input" type="text" name="title" id="title" value="{{ book.title }}">
+              <label class="author-label" for="author">Author</label>
+              <select id="author" name="author_id">
+                {% for author in all_authors %}
+                  <option value="{{ author.id }}"
+                  {% if book.author.id == author.id %} 
+                  selected="selected" 
+                  {% endif %}>
+                    {{ author.first_name }}
+                  </option>
+                {% endfor %}
+              </select>
+              <label class="genre-label" for="genre">Genre</label>
+              <input class="form-inputs genre-input" type="text" name="genre" id="genre" value="{{ book.genre }}">
+              <input class="form-inputs submit-btn" type="submit" value="Edit Book">
+          </form>
+      </div>
+  </div>
+</main>
+
+{% endblock %}

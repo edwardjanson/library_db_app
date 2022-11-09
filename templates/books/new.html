@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Add Books
+{% endblock %}
+
+{% block main %}
+<main id="books">
+  <div id="main-content">
+      <h1>ADD BOOK</h1>
+      {% if error %}
+      <div id="error-message">
+          Please make sure to add a book title, author, and genre
+      </div>
+      {% endif %}
+      <div class="books-form">
+          <form action="/books/create" method="post">
+              <h2 class="form-header">Add a book</h2>
+              <label class="title-label" for="title">Title</label>
+              <input class="form-inputs title-input" type="text" name="title" id="title">
+              <label class="author-label" for="author">Author</label>
+              <input class="form-inputs author-input" type="text" name="author" id="author">
+              <label class="genre-label" for="genre">Genre</label>
+              <input class="form-inputs genre-input" type="text" name="genre" id="genre">
+              <input class="form-inputs submit-btn" type="submit" value="Add Book">
+          </form>
+      </div>
+  </div>
+</main>
+{% endblock %}
