@@ -21,5 +21,6 @@ book_repository.save(book_1)
 book_2 = Book("Animal Farm", "Satire", author2)
 book_repository.save(book_2)
 
+books = book_repository.select_all()
 
 pdb.set_trace()

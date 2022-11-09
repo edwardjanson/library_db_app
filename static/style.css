@@ -1,83 +1,316 @@
-body{
-  font-family: "Helvetica", arial, sans-serif; font-size: 16px;
-}
-
-.task {
-  border: 1px solid #ccc;
-  width: 300px;
-  min-height: 68px;
-  padding: 10px;
+body {
+  font-family: 'Courier New', Courier, monospace;
+  margin: 0 auto; 
+  width: 100%;
   display: flex;
-  line-height: 18px;
-  margin-bottom: 10px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
-.name {
+#books {
+  margin: 3rem 0rem 3rem;
+  display: flex;
+  justify-content: center;
+  background-color: rgb(105, 210, 194);
+  width: 50rem;
+  padding: 2rem;
+}
+
+#book-details {
+  line-height: 1.5rem;
+}
+
+.book-info {
+  margin: 0.5rem;
+}
+
+#book-details {
+  display: flex;
+  flex-direction: column;
+}
+
+#book {
+  margin: 3rem 1rem 1rem;
+  display: flex;
+  justify-content: center;
+  background-color: rgb(105, 210, 194);
+  width: 30rem;
+  padding: 2rem;
+}
+
+.book-cards {
+  display: grid;
+  justify-content: space-around;
+  grid-template-columns: 15rem 15rem 15rem;
+}
+
+.book-card {
+  margin: 1rem;
+  background-color: rgb(255, 241, 45);
+  width: 10rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  box-shadow: 0.4rem 0.3rem 0.3rem rgb(218, 90, 139);
+}
+
+.card-header {
+  margin: 0;
+  padding-bottom: 0.5rem;
+  font-size: 1rem;
+  text-align: center;
+}
+
+#check-out-log {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.5rem;
+}
+
+#error-message {
+  display: flex;
+  justify-content: center;
+  color: rgb(218, 90, 139);
   font-weight: bold;
-  margin-bottom: 0.5em;
-  margin-right: 0.3em;
+  margin-bottom: 3rem;
 }
 
-.duration{
-  color: #8899a6;
-  font-size: 13px;
-  margin-left: 20px;
+form > span {
+  display: flex;
 }
 
-.buttons {
-  margin-top: 10px;
-  margin-left: 2px;
-  font-size: 1.4em;
-  color: #aab8c2;
+form > span > input {
+  margin-bottom: 0.5rem;
+  margin-right: 0.5rem;
 }
 
-.buttons i {
-  width: 80px;
+form > select {
+  margin-top: 0.5rem;
 }
 
-input, select, button {
-  font-size: 100%;
-  width : 100%;
-  padding: 10px;
-  margin: 10px;
-  box-sizing: border-box;
+form > input {
+  margin-top: 0.5rem;
 }
 
-.trash-button{
-  display: contents;
-  font-size: 65%;
+.form-inputs {
+  margin-left: 0.5rem;
+  margin-right: 1rem;
+  font-family: 'Courier New', Courier, monospace;
 }
 
-
-.delete-form{
-  display: inline;
+.form-header {
+  grid-area: form-header;
+  align-self: center;
+  justify-self: left;
 }
 
-.menu{
+h1 {
+  margin-top: 0;
+  margin-bottom: 3rem;
+  font-size: 2rem;
+  text-align: center;
+  font-family: 'Monoton', cursive;
+  word-spacing: 0.5rem;
+}
+
+h2 {
+  text-align: center;
+  margin-top: 0;
+  font-size: 1.2rem;
+}
+
+header {
+  height: 6rem;
+  background-image: url("/static/images/books.png");
+  background-repeat: repeat-x;
+  background-size: auto 100%;
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
+  flex-basis: 100%;
+  box-shadow: 0rem 0.3rem 0.3rem rgb(218, 90, 139);
+}
+
+#logo {
+  font-family: "Monoton", Arial, Helvetica, sans-serif;
+  font-weight: bolder;
+  font-size: 2rem;
+  color: white;
+  padding: 2rem;
+  word-spacing: 0.5rem;
+}
+
+#menu{
   display: flex;
   padding: 10px;
-  background-color: grey;
   color: white;
+  gap: 2rem;
+  padding-right: 2rem;
+  list-style-type: none;
 }
 
-.menu li a{
+#menu li a {
   text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
-.menu li a:visited{
+#menu li a:visited {
   color: white;
 }
 
-.menu li{
+.menu li {
   padding-right: 10px;
-  list-style: none;
   color: white;
   font-family: "Helvetica", arial, sans-serif; font-size: 14px;
 }
 
-.container{
+.no-books-found {
+  margin-top: 1rem;
   display: flex;
-  flex-wrap: wrap;
-  width: 300px;
-  margin: 0 auto;
+  justify-content: center;
+}
+
+/* Form Grid */
+
+.title-label {
+  grid-area: title-label;
+  justify-self: right;
+  padding-right: 0.5rem;
+}
+
+.title-input {
+  grid-area: title-input;
+}
+
+.author-label {
+  grid-area: author-label;
+  justify-self: right;
+  padding-right: 0.5rem;
+}
+
+.author-input {
+  grid-area: author-input;
+}
+
+.genre-label {
+  grid-area: genre-label;
+  justify-self: right;
+  padding-right: 0.5rem;
+}
+
+.genre-input {
+  grid-area: genre-input;
+}
+
+.submit-btn {
+  grid-area: submit-btn;
+}
+
+.submit-btn {
+  grid-column: 3 / -1;
+}
+
+.books-form > form {
+  display: grid;
+  margin: 1rem 0 3rem;
+  align-items: end;
+  justify-items: stretch;
+  justify-content: center;
+  grid-template-columns: 10rem 5rem 20rem;
+  grid-template-areas: 
+    "form-header title-label title-input"
+    "form-header author-label author-input"
+    "form-header genre-label genre-input"
+    "form-header . submit-bt";
+}
+
+#update-status {
+  padding-top: 1.5rem;
+  line-height: 1.3rem;
+}
+
+#update-status > span {
+  margin-bottom: 0.5rem;
+  display: flex;
+}
+
+#edit-remove {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+#edit-remove > form > input {
+  width: 7rem;
+}
+
+#view-all-books {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 600px) {
+  .books-form > form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .books-form > form > input {
+      margin: 0 0 1rem;
+  }
+
+  .book-cards {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+  }
+
+}
+
+@media (max-width: 900px) {
+  #books {
+      width: 100%;
+      margin: 2rem;
+  }
+
+  .books-form > form {
+      display: grid;
+      margin: 1rem 0 3rem;
+      align-items: start;
+      justify-items: stretch;
+      justify-content: center;
+      grid-template-columns: 3rem 14rem;
+      grid-template-areas:
+        "form-header form-header"
+        "title-label title-input"
+        "author-label author-input"
+        "genre-label genre-input"
+        "submit-bt submit-bt";
+  }
+
+  .books-form > form > input {
+      margin: 0 0 1rem;
+      justify-content: space-around;
+  }
+
+  .book-cards {
+      grid-template-columns: 15rem 15rem;
+  }
+
+  .form-header {
+      align-self: center;
+      justify-self: center;
+      padding-bottom: 1rem;
+  }
+
+  .submit-btn {
+      grid-column: 2 / -1;
+  }
 }
