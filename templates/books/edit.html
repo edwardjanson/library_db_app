@@ -10,7 +10,7 @@
       </div>
       {% endif %}
       <div class="books-form">
-          <form action="/books/{{ book.hyphenate_title }}" method="post">
+          <form action="/books/{{ book.id }}" method="post">
               <h2 class="form-header">Edit book</h2>
               <label class="title-label" for="title">Title</label>
               <input class="form-inputs title-input" type="text" name="title" id="title" value="{{ book.title }}">

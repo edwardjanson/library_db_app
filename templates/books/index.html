@@ -11,11 +11,11 @@
         <span id="view-all-books"><a href="/books">< View all books</a></span>
         <div id="book-details">
             <span><b>Title:</b> {{ book.title }}</span>
-            <span><b>Author:</b> {{ book.author }}</span>
+            <span><b>Author:</b> {{ book.author.first_name }} {{ book.author.last_name }}</span>
             <span><b>Genre:</b> {{ book.genre }}</span>
         <div id="update-status">
             <span><b>Update status:</b></span>
-            <form action="/books/{{ book.hyphenate_title() }}/update?loc=book" method="post">
+            <form action="/books/{{ book.id }}/update?loc=book" method="post">
                 {% if book.is_checked_out %}
                 <span><input name="check-out-status" type="radio" value="checked-in" onchange="this.form.submit()"/>Checked-in</span>
                 <span><input name="check-out-status" type="radio" value="checked-out" onchange="this.form.submit()" checked/>Checked-out</span>
@@ -26,12 +26,12 @@
             </form>
         </div>
         <div id="remove-book">
-            <form action="/books/{{ book.hyphenate_title() }}/delete" method="post">
+            <form action="/books/{{ book.id }}/delete" method="post">
                 <input class="form-inputs" type="submit" value="Remove Book">
             </form>
         </div>
         <div id="edit-book">
-          <form action="/books/{{ book.hyphenate_title() }}/edit" method="get">
+          <form action="/books/{{ book.id }}/edit" method="get">
               <input class="form-inputs" type="submit" value="Edit Book">
           </form>
       </div>
