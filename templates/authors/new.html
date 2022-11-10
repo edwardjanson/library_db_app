@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Add Books
+{% endblock %}
+
+{% block main %}
+<main id="books">
+  <div id="main-content">
+      <h1>ADD AUTHOR</h1>
+      {% if error %}
+      <div id="error-message">
+          Please make sure to add the author's first name and last name
+      </div>
+      {% endif %}
+      <div class="authors-form">
+          <form action="/authors/new" method="post">
+              <h2 class="form-header">Add an author</h2>
+              <label class="first-name-label" for="first-name">First Name</label>
+              <input class="form-inputs first-name-input" type="text" name="first_name" id="first-name">
+              <label class="last-name-label" for="last-name">Last Name</label>
+              <input class="form-inputs last-name-input" type="text" name="last_name" id="last-name">
+              <input class="form-inputs submit-btn" type="submit" value="Add Author">
+          </form>
+      </div>
+  </div>
+</main>
+{% endblock %}

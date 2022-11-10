@@ -11,6 +11,15 @@ books_blueprint = Blueprint("books", __name__)
 
 @books_blueprint.route("/books")
 def books():
+    if request.args.get("search"):
+        title = request.args.get("title")
+        author = request.args.get("author")
+        genre = request.args.get("genre")
+
+        filtered_books = book_repository.select_by_filter(title, author, genre)
+
+        return render_template("index.html", books=filtered_books)
+
     books = book_repository.select_all()
     return render_template("index.html", books=books)
 
@@ -86,26 +95,3 @@ def update_book(id):
 def delete_book(id):
     book_repository.delete(id)
     return redirect("/books")
-
-
-@books_blueprint.route("/books")
-def search_book():
-    book_title = request.args.get("title")
-    book_author = request.args.get("author")
-    book_genre = request.args.get("genre")
-
-    # Return a list of books that matches the search
-    book_list = book_repository.select_all()
-    books_found = book_list
-    for book in book_list:
-        if book_title and book_title not in book.title:
-            books_found.remove(book)
-            continue
-        if book_author and book_author not in book.author.first_name or book_author not in book.author.last_name:
-            books_found.remove(book)
-            continue
-        if book_genre and book_genre not in book.genre:
-            books_found.remove(book)
-            continue
-
-    return render_template("index.html", books=books_found, error=False)
